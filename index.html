@@ -25,8 +25,7 @@
   html,body{margin:0;padding:0;}
   body{
     background:var(--paper);
-    background-image:
-      linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-image: linear-gradient(var(--paper-line) 1px, transparent 1px);
     background-size: 100% 2.1em;
     background-position: 0 5.4em;
     color:var(--ink);
@@ -34,13 +33,12 @@
     -webkit-font-smoothing:antialiased;
     min-height:100vh;
   }
-  .wrap{max-width:820px;margin:0 auto;padding:0 20px 80px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 80px;}
 
   header.masthead{
     padding:36px 0 18px;
     border-bottom:3px double var(--ink);
     margin-bottom:28px;
-    position:relative;
   }
   header.masthead .eyebrow{
     font-family:'Space Mono', monospace;
@@ -65,19 +63,17 @@
     margin-top:4px;
   }
 
-  /* Balance summary — the signature element: a ledger totals strip */
   .totals{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     border:1.5px solid var(--ink);
     background:var(--card);
     box-shadow:var(--shadow);
-    margin-bottom:32px;
   }
   .totals > div{
     padding:16px 18px;
     border-right:1.5px solid var(--ink);
-    min-width:0; /* allow grid items to shrink below content size instead of overflowing */
+    min-width:0;
   }
   .totals > div:last-child{border-right:none;}
   .totals .label{
@@ -93,20 +89,28 @@
   }
   .totals .value{
     font-family:'Space Mono', monospace;
-    font-size:clamp(13px, 4.6vw, 22px); /* shrinks on narrow screens instead of overflowing */
+    font-size:clamp(13px, 4.6vw, 22px);
     font-weight:700;
     font-variant-numeric: tabular-nums;
     line-height:1.2;
-    overflow-wrap:anywhere; /* if it still doesn't fit, wraps inside its own cell only */
+    overflow-wrap:anywhere;
     letter-spacing:-0.02em;
   }
   .totals .value.income{color:var(--green);}
   .totals .value.expense{color:var(--rust);}
-
   @media (max-width:420px){
     .totals > div{padding:12px 8px;}
     .totals .label{font-size:9px;}
   }
+  .alltime-line{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    text-align:right;
+    padding:7px 2px 0;
+    margin-bottom:28px;
+  }
+  .alltime-line b{color:var(--ink);}
 
   section.card{
     background:var(--card);
@@ -134,217 +138,154 @@
     border-radius:50%;
   }
 
-  /* Form */
-  .type-toggle{
-    display:flex;
-    border:1.5px solid var(--ink);
-    margin-bottom:16px;
-    width:fit-content;
-  }
+  /* --- Add form --- */
+  .type-toggle{display:flex;border:1.5px solid var(--ink);margin-bottom:16px;width:fit-content;}
   .type-toggle button{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    padding:9px 20px;
-    background:transparent;
-    border:none;
-    cursor:pointer;
-    color:var(--ink-soft);
+    font-family:'Space Mono', monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    padding:9px 20px;background:transparent;border:none;cursor:pointer;color:var(--ink-soft);
   }
   .type-toggle button + button{border-left:1.5px solid var(--ink);}
   .type-toggle button.active[data-type="income"]{background:var(--green-bg);color:var(--green);font-weight:700;}
   .type-toggle button.active[data-type="expense"]{background:var(--rust-bg);color:var(--rust);font-weight:700;}
-
   .field{margin-bottom:14px;}
   .field label{
-    display:block;
-    font-family:'Space Mono', monospace;
-    font-size:10.5px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    margin-bottom:5px;
+    display:block;font-family:'Space Mono', monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px;
   }
   .field input, .field textarea{
-    width:100%;
-    background:var(--paper);
-    border:1.5px solid var(--ink);
-    padding:10px 11px;
-    font-family:'Inter', sans-serif;
-    font-size:15px;
-    color:var(--ink);
-    border-radius:0;
+    width:100%;background:var(--paper);border:1.5px solid var(--ink);padding:10px 11px;
+    font-family:'Inter', sans-serif;font-size:15px;color:var(--ink);border-radius:0;
   }
-  .field input:focus, .field textarea:focus{
-    outline:2px solid var(--brass);
-    outline-offset:1px;
-  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--brass);outline-offset:1px;}
   .field textarea{resize:vertical;min-height:56px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   @media (max-width:520px){.row2{grid-template-columns:1fr;}}
-
   .btn-submit{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    background:var(--ink);
-    color:var(--card);
-    border:1.5px solid var(--ink);
-    padding:12px 22px;
-    cursor:pointer;
-    width:100%;
-    margin-top:4px;
+    font-family:'Space Mono', monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--ink);color:var(--card);border:1.5px solid var(--ink);padding:12px 22px;
+    cursor:pointer;width:100%;margin-top:4px;
   }
   .btn-submit:hover{background:var(--rule-red);border-color:var(--rule-red);}
   .btn-submit:disabled{opacity:.5;cursor:default;}
-
-  .status-msg{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    margin-top:10px;
-    min-height:16px;
-  }
+  .status-msg{font-family:'Space Mono', monospace;font-size:12px;margin-top:10px;min-height:16px;}
   .status-msg.ok{color:var(--green);}
   .status-msg.err{color:var(--rust);}
 
-  /* Search + list */
+  /* --- Search --- */
   .search-row{display:flex;gap:10px;margin-bottom:18px;}
   .search-row input{
-    flex:1;
-    background:var(--paper);
-    border:1.5px solid var(--ink);
-    padding:10px 12px;
-    font-size:14px;
-    font-family:'Inter',sans-serif;
+    flex:1;background:var(--paper);border:1.5px solid var(--ink);padding:10px 12px;
+    font-size:14px;font-family:'Inter',sans-serif;
   }
   .search-row input:focus{outline:2px solid var(--brass);outline-offset:1px;}
-  .filter-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
-  .filter-tabs button{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:.05em;
-    text-transform:uppercase;
-    padding:6px 12px;
-    background:transparent;
-    border:1px solid var(--ink-soft);
-    color:var(--ink-soft);
-    cursor:pointer;
+  .search-row button{
+    font-family:'Space Mono', monospace;font-size:12px;text-transform:uppercase;
+    background:transparent;border:1.5px solid var(--ink);padding:0 16px;cursor:pointer;color:var(--ink);
+    display:none;
   }
-  .filter-tabs button.active{
-    background:var(--ink);
-    color:var(--card);
-    border-color:var(--ink);
-  }
+  .search-row button.show{display:block;}
 
-  .group{margin-bottom:22px;}
-  .group-title{
-    font-family:'Space Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--rule-red);
-    border-bottom:1px solid var(--paper-line);
-    padding-bottom:6px;
-    margin-bottom:8px;
-    display:flex;
-    justify-content:space-between;
-  }
-  .entry{
-    display:grid;
-    grid-template-columns:70px minmax(0,1fr) minmax(0,auto);
-    gap:12px;
-    align-items:start;
-    padding:10px 4px;
-    border-bottom:1px dashed var(--paper-line);
-  }
-  .entry:last-child{border-bottom:none;}
-  .entry .date{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    color:var(--ink-soft);
-    line-height:1.4;
-    padding-top:2px;
-  }
-  .entry .desc{
-    font-size:14.5px;
-    font-weight:500;
-  }
-  .entry .notes{
-    font-size:12.5px;
-    color:var(--ink-soft);
-    margin-top:2px;
-  }
-  .entry .amt{
-    font-family:'Space Mono', monospace;
-    font-size:clamp(12px, 3.8vw, 15px);
-    font-weight:700;
-    font-variant-numeric: tabular-nums;
-    text-align:right;
-    overflow-wrap:anywhere;
-    padding-top:2px;
-  }
-  .entry .amt.income{color:var(--green);}
-  .entry .amt.expense{color:var(--rust);}
-
-  .empty-state{
-    text-align:center;
-    padding:34px 10px;
-    color:var(--ink-soft);
-    font-size:14px;
-  }
-  .empty-state .big{
-    font-family:'Fraunces',serif;
-    font-size:20px;
-    color:var(--ink);
+  /* --- Month nav --- */
+  .month-nav{
+    display:flex;align-items:center;justify-content:center;gap:18px;
     margin-bottom:6px;
   }
+  .month-nav button{
+    font-family:'Space Mono', monospace;font-size:16px;
+    background:transparent;border:1.5px solid var(--ink);color:var(--ink);
+    width:34px;height:34px;cursor:pointer;line-height:1;
+  }
+  .month-nav button:hover{background:var(--ink);color:var(--card);}
+  .month-nav button:disabled{opacity:.3;cursor:default;background:transparent;color:var(--ink);}
+  .month-nav .month-label{
+    font-family:'Fraunces', serif;font-weight:600;font-size:18px;min-width:170px;text-align:center;
+  }
+  .search-active-label{
+    text-align:center;font-family:'Space Mono', monospace;font-size:12px;color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .search-active-label b{color:var(--ink);}
+
+  /* --- Column headers (Income / Expense) --- */
+  .col-headers{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    margin:18px 0 4px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .col-headers div{
+    font-family:'Space Mono', monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:6px 10px;text-align:center;
+  }
+  .col-headers .ch-income{color:var(--green);border-right:1px dashed var(--paper-line);}
+  .col-headers .ch-expense{color:var(--rust);}
+
+  /* --- Day groups --- */
+  .day-group{margin-bottom:4px;}
+  .day-label{
+    text-align:center;font-family:'Space Mono', monospace;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--rule-red);
+    padding:12px 0 6px;
+  }
+  .day-split{
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .day-split .col{padding:0 10px;min-width:0;}
+  .day-split .col.col-income{border-right:1px dashed var(--paper-line);}
+  .subcol-label{display:none;}
+  @media (max-width:640px){
+    .col-headers{display:none;}
+    .day-split{grid-template-columns:1fr;}
+    .day-split .col.col-income{border-right:none;border-bottom:1px dashed var(--paper-line);margin-bottom:6px;padding-bottom:6px;}
+    .subcol-label{
+      display:block;font-family:'Space Mono', monospace;font-size:10px;letter-spacing:.08em;
+      text-transform:uppercase;margin-bottom:4px;
+    }
+    .subcol-label.si{color:var(--green);}
+    .subcol-label.se{color:var(--rust);}
+  }
+
+  .row-entry{
+    display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;
+    padding:7px 0;border-bottom:1px dashed var(--paper-line);
+  }
+  .col .row-entry:last-child{border-bottom:none;}
+  .row-entry .desc{font-size:13.5px;font-weight:500;overflow-wrap:anywhere;}
+  .row-entry .notes{font-size:11.5px;color:var(--ink-soft);margin-top:2px;overflow-wrap:anywhere;}
+  .row-entry .amt{
+    font-family:'Space Mono', monospace;font-size:13px;font-weight:700;
+    font-variant-numeric: tabular-nums;white-space:nowrap;padding-top:1px;
+  }
+  .row-entry .amt.income{color:var(--green);}
+  .row-entry .amt.expense{color:var(--rust);}
+  .col-empty{
+    font-size:12px;color:var(--ink-soft);font-style:italic;padding:8px 0;text-align:center;
+  }
+
+  .empty-state{text-align:center;padding:34px 10px;color:var(--ink-soft);font-size:14px;}
+  .empty-state .big{font-family:'Fraunces',serif;font-size:20px;color:var(--ink);margin-bottom:6px;}
 
   .setup-banner{
-    border:1.5px dashed var(--rule-red);
-    background:var(--rust-bg);
-    padding:16px 18px;
-    margin-bottom:24px;
-    font-size:13.5px;
-    line-height:1.55;
+    border:1.5px dashed var(--rule-red);background:var(--rust-bg);padding:16px 18px;
+    margin-bottom:24px;font-size:13.5px;line-height:1.55;
   }
   .setup-banner strong{color:var(--rule-red);}
   .setup-banner input{
-    width:100%;
-    margin-top:8px;
-    padding:8px 10px;
-    border:1.5px solid var(--ink);
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    background:#fff;
+    width:100%;margin-top:8px;padding:8px 10px;border:1.5px solid var(--ink);
+    font-family:'Space Mono',monospace;font-size:12px;background:#fff;
   }
   .setup-banner button{
-    margin-top:8px;
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    text-transform:uppercase;
-    background:var(--ink);
-    color:#fff;
-    border:none;
-    padding:8px 16px;
-    cursor:pointer;
+    margin-top:8px;font-family:'Space Mono', monospace;font-size:12px;text-transform:uppercase;
+    background:var(--ink);color:#fff;border:none;padding:8px 16px;cursor:pointer;
   }
 
   footer{
-    text-align:center;
-    font-family:'Space Mono', monospace;
-    font-size:10.5px;
-    color:var(--ink-soft);
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    margin-top:10px;
+    text-align:center;font-family:'Space Mono', monospace;font-size:10.5px;color:var(--ink-soft);
+    letter-spacing:.06em;text-transform:uppercase;margin-top:10px;
   }
 
   .spinner{
-    display:inline-block;width:12px;height:12px;
-    border:2px solid var(--ink-soft);border-top-color:transparent;
-    border-radius:50%;animation:spin .7s linear infinite;
+    display:inline-block;width:12px;height:12px;border:2px solid var(--ink-soft);
+    border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;
     vertical-align:middle;margin-right:6px;
   }
   @keyframes spin{to{transform:rotate(360deg);}}
@@ -360,25 +301,17 @@
   </header>
 
   <div id="setupBanner" class="setup-banner" style="display:none;">
-    <strong>One-time setup needed.</strong> Paste your Google Apps Script Web App URL below (see README for how to get this). It's saved in this browser only.
+    <strong>One-time setup needed.</strong> Paste your Google Apps Script Web App URL below. It's saved in this browser only.
     <input type="text" id="scriptUrlInput" placeholder="https://script.google.com/macros/s/XXXXXXX/exec">
     <button id="saveUrlBtn">Save &amp; Connect</button>
   </div>
 
   <div class="totals">
-    <div>
-      <div class="label">Income</div>
-      <div class="value income" id="totalIncome">—</div>
-    </div>
-    <div>
-      <div class="label">Expense</div>
-      <div class="value expense" id="totalExpense">—</div>
-    </div>
-    <div>
-      <div class="label">Balance</div>
-      <div class="value" id="totalBalance">—</div>
-    </div>
+    <div><div class="label">Income</div><div class="value income" id="totalIncome">—</div></div>
+    <div><div class="label">Expense</div><div class="value expense" id="totalExpense">—</div></div>
+    <div><div class="label">Balance</div><div class="value" id="totalBalance">—</div></div>
   </div>
+  <div class="alltime-line" id="alltimeLine"></div>
 
   <section class="card">
     <h2><span class="num">1</span>Add Entry</h2>
@@ -409,16 +342,26 @@
   </section>
 
   <section class="card">
-    <h2><span class="num">2</span>Search &amp; Browse</h2>
+    <h2><span class="num">2</span>Browse &amp; Search</h2>
     <div class="search-row">
       <input type="text" id="searchInput" placeholder="Search description or notes...">
+      <button id="clearSearchBtn">Clear</button>
     </div>
-    <div class="filter-tabs" id="groupTabs">
-      <button data-group="month" class="active">By Month</button>
-      <button data-group="year">By Year</button>
-      <button data-group="date">By Date</button>
-      <button data-group="none">All (newest first)</button>
+
+    <div id="navArea">
+      <div class="month-nav">
+        <button id="prevMonthBtn">&#8592;</button>
+        <div class="month-label" id="monthLabel">—</div>
+        <button id="nextMonthBtn">&#8594;</button>
+      </div>
     </div>
+    <div class="search-active-label" id="searchActiveLabel" style="display:none;"></div>
+
+    <div class="col-headers">
+      <div class="ch-income">Income records</div>
+      <div class="ch-expense">Expense records</div>
+    </div>
+
     <div id="listArea">
       <div class="empty-state">
         <div class="big">Loading your ledger…</div>
@@ -434,18 +377,20 @@
 (function(){
   const SCRIPT_URL_KEY = 'ledger_script_url';
   let scriptUrl = localStorage.getItem(SCRIPT_URL_KEY) || '';
-  let allEntries = [];
   let currentType = 'income';
-  let currentGroup = 'month';
+
+  const now = new Date();
+  let viewYear = now.getFullYear();
+  let viewMonth = now.getMonth() + 1; // 1-12
+  let searchMode = false;
+  let searchDebounceTimer = null;
 
   const el = id => document.getElementById(id);
   const setupBanner = el('setupBanner');
   const statusMsg = el('statusMsg');
 
-  // --- Today label ---
-  el('todayLabel').textContent = new Date().toLocaleDateString('en-IN', {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
+  el('todayLabel').textContent = now.toLocaleDateString('en-IN', {weekday:'short', day:'2-digit', month:'short', year:'numeric'});
 
-  // --- Setup flow ---
   function checkSetup(){
     if(!scriptUrl){
       setupBanner.style.display = 'block';
@@ -458,24 +403,22 @@
   el('saveUrlBtn').addEventListener('click', function(){
     const val = el('scriptUrlInput').value.trim();
     if(!val.startsWith('https://script.google.com/')){
-      alert('That doesn\'t look like a Google Apps Script URL. It should start with https://script.google.com/');
+      alert("That doesn't look like a Google Apps Script URL. It should start with https://script.google.com/");
       return;
     }
     scriptUrl = val;
     localStorage.setItem(SCRIPT_URL_KEY, scriptUrl);
     checkSetup();
-    loadEntries();
+    init();
   });
 
-  // --- Default date/time to now ---
   function setDefaultDateTime(){
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    el('dateInput').value = now.toISOString().slice(0,16);
+    const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    el('dateInput').value = d.toISOString().slice(0,16);
   }
   setDefaultDateTime();
 
-  // --- Type toggle ---
   document.querySelectorAll('.type-toggle button').forEach(btn=>{
     btn.addEventListener('click', function(){
       document.querySelectorAll('.type-toggle button').forEach(b=>b.classList.remove('active'));
@@ -484,7 +427,6 @@
     });
   });
 
-  // --- Submit entry ---
   el('submitBtn').addEventListener('click', async function(){
     if(!checkSetup()) return;
     const description = el('descInput').value.trim();
@@ -495,7 +437,8 @@
     if(!description){ showStatus('Please add a description.', 'err'); return; }
     if(!amount || amount <= 0){ showStatus('Please enter a valid amount.', 'err'); return; }
 
-    const isoDate = dateVal ? new Date(dateVal).toISOString() : new Date().toISOString();
+    const dateObj = dateVal ? new Date(dateVal) : new Date();
+    const isoDate = dateObj.toISOString();
 
     el('submitBtn').disabled = true;
     showStatus('Saving...', '');
@@ -503,7 +446,7 @@
     try{
       await fetch(scriptUrl, {
         method:'POST',
-        headers:{'Content-Type':'text/plain;charset=utf-8'}, // avoids CORS preflight
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
         body: JSON.stringify({ type: currentType, description, amount, notes, date: isoDate })
       });
       showStatus('✓ Saved to ledger.', 'ok');
@@ -511,7 +454,16 @@
       el('amountInput').value='';
       el('notesInput').value='';
       setDefaultDateTime();
-      loadEntries();
+
+      // Jump the browse view to wherever the new entry landed, so it's visible immediately.
+      if(!searchMode){
+        viewYear = dateObj.getFullYear();
+        viewMonth = dateObj.getMonth() + 1;
+        loadMonth();
+      } else {
+        runSearch(el('searchInput').value.trim());
+      }
+      loadSummary();
     }catch(err){
       showStatus('Could not save. Check your connection and script URL.', 'err');
     }
@@ -524,109 +476,170 @@
     if(cls==='ok') setTimeout(()=>{ if(statusMsg.textContent===msg) statusMsg.textContent=''; }, 3000);
   }
 
-  // --- Load + render entries ---
-  async function loadEntries(){
-    if(!checkSetup()) return;
+  // --- All-time summary (cheap call, used only for the small line + balance sign) ---
+  async function loadSummary(){
+    if(!scriptUrl) return;
     try{
-      const res = await fetch(scriptUrl + '?action=list');
+      const res = await fetch(scriptUrl + '?action=summary');
       const data = await res.json();
-      allEntries = (data.entries || []).sort((a,b)=> new Date(b.date) - new Date(a.date));
-      computeTotals();
-      renderList();
+      const bal = (data.totalIncome||0) - (data.totalExpense||0);
+      el('alltimeLine').innerHTML = 'All-time balance: <b>' + formatMoney(bal) + '</b> &nbsp;·&nbsp; '
+        + formatMoney(data.totalIncome||0) + ' in, ' + formatMoney(data.totalExpense||0) + ' out';
+    }catch(err){ /* non-critical, fail silently */ }
+  }
+
+  // --- Month view ---
+  const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function updateMonthLabel(){
+    el('monthLabel').textContent = MONTH_NAMES[viewMonth-1] + ' ' + viewYear;
+    const isCurrentOrFuture = (viewYear > now.getFullYear()) || (viewYear === now.getFullYear() && viewMonth >= now.getMonth()+1);
+    el('nextMonthBtn').disabled = isCurrentOrFuture;
+  }
+
+  el('prevMonthBtn').addEventListener('click', function(){
+    viewMonth--;
+    if(viewMonth < 1){ viewMonth = 12; viewYear--; }
+    loadMonth();
+  });
+  el('nextMonthBtn').addEventListener('click', function(){
+    viewMonth++;
+    if(viewMonth > 12){ viewMonth = 1; viewYear++; }
+    loadMonth();
+  });
+
+  async function loadMonth(){
+    if(!checkSetup()) return;
+    updateMonthLabel();
+    el('listArea').innerHTML = '<div class="empty-state"><div><span class="spinner"></span>Loading '+MONTH_NAMES[viewMonth-1]+'…</div></div>';
+    try{
+      const res = await fetch(scriptUrl + '?action=month&year='+viewYear+'&month='+viewMonth);
+      const data = await res.json();
+      setMonthTotals(data.monthIncome||0, data.monthExpense||0);
+      renderSplitList(data.entries||[], MONTH_NAMES[viewMonth-1]+' '+viewYear);
     }catch(err){
       el('listArea').innerHTML = '<div class="empty-state"><div class="big">Could not load entries</div><div>Check your script URL and internet connection.</div></div>';
     }
   }
 
-  function computeTotals(){
-    let income=0, expense=0;
-    allEntries.forEach(e=>{
-      const amt = parseFloat(e.amount)||0;
-      if(e.type==='income') income+=amt; else expense+=amt;
-    });
-    el('totalIncome').textContent = '₹'+income.toFixed(2);
-    el('totalExpense').textContent = '₹'+expense.toFixed(2);
-    const bal = income-expense;
+  function setMonthTotals(income, expense){
+    el('totalIncome').textContent = formatMoney(income);
+    el('totalExpense').textContent = formatMoney(expense);
+    const bal = income - expense;
     const balEl = el('totalBalance');
-    balEl.textContent = (bal<0?'-':'')+'₹'+Math.abs(bal).toFixed(2);
+    balEl.textContent = (bal<0?'-':'') + formatMoney(Math.abs(bal));
     balEl.className = 'value ' + (bal>=0?'income':'expense');
   }
 
-  // --- Grouping tabs ---
-  document.querySelectorAll('#groupTabs button').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('#groupTabs button').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      currentGroup = btn.dataset.group;
-      renderList();
-    });
-  });
-
-  el('searchInput').addEventListener('input', renderList);
-
-  function groupKey(dateObj, mode){
-    if(mode==='year') return dateObj.getFullYear().toString();
-    if(mode==='month') return dateObj.toLocaleDateString('en-IN',{month:'long', year:'numeric'});
-    if(mode==='date') return dateObj.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-    return null;
+  function formatMoney(n){
+    return '₹' + (Number(n)||0).toFixed(2);
   }
 
-  function renderList(){
-    const q = el('searchInput').value.trim().toLowerCase();
-    let filtered = allEntries;
-    if(q){
-      filtered = allEntries.filter(e =>
-        (e.description||'').toLowerCase().includes(q) ||
-        (e.notes||'').toLowerCase().includes(q)
-      );
+  // --- Search ---
+  el('searchInput').addEventListener('input', function(){
+    const q = this.value.trim();
+    el('clearSearchBtn').classList.toggle('show', q.length>0);
+    clearTimeout(searchDebounceTimer);
+    if(!q){
+      exitSearch();
+      return;
     }
+    searchDebounceTimer = setTimeout(()=>runSearch(q), 350);
+  });
+  el('clearSearchBtn').addEventListener('click', function(){
+    el('searchInput').value = '';
+    this.classList.remove('show');
+    exitSearch();
+  });
 
+  function exitSearch(){
+    if(!searchMode) return;
+    searchMode = false;
+    el('navArea').style.display = '';
+    el('searchActiveLabel').style.display = 'none';
+    loadMonth();
+  }
+
+  async function runSearch(q){
+    if(!checkSetup()) return;
+    searchMode = true;
+    el('navArea').style.display = 'none';
+    el('searchActiveLabel').style.display = 'block';
+    el('searchActiveLabel').innerHTML = 'Search results for “<b>'+escapeHtml(q)+'</b>”';
+    el('listArea').innerHTML = '<div class="empty-state"><div><span class="spinner"></span>Searching…</div></div>';
+    try{
+      const res = await fetch(scriptUrl + '?action=search&q=' + encodeURIComponent(q));
+      const data = await res.json();
+      const entries = data.entries || [];
+      let income=0, expense=0;
+      entries.forEach(e=>{ if(e.type==='expense') expense+=Number(e.amount)||0; else income+=Number(e.amount)||0; });
+      setMonthTotals(income, expense);
+      renderSplitList(entries, null);
+      if(data.capped){
+        const note = document.createElement('div');
+        note.className = 'col-empty';
+        note.style.gridColumn = '1 / -1';
+        note.textContent = 'Showing the most recent '+entries.length+' matches — narrow your search for more precise results.';
+        el('listArea').appendChild(note);
+      }
+    }catch(err){
+      el('listArea').innerHTML = '<div class="empty-state"><div class="big">Search failed</div><div>Check your connection and try again.</div></div>';
+    }
+  }
+
+  // --- Rendering: day-grouped, income/expense split columns ---
+  function dayLabelFor(dateObj){
+    const d = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterday = new Date(today); yesterday.setDate(yesterday.getDate()-1);
+    if(d.getTime()===today.getTime()) return 'Today — ' + d.toLocaleDateString('en-IN',{weekday:'long', day:'2-digit', month:'short'});
+    if(d.getTime()===yesterday.getTime()) return 'Yesterday — ' + d.toLocaleDateString('en-IN',{weekday:'long', day:'2-digit', month:'short'});
+    return d.toLocaleDateString('en-IN',{weekday:'long', day:'2-digit', month:'short', year:(d.getFullYear()!==now.getFullYear()? 'numeric':undefined)});
+  }
+
+  function renderSplitList(entries, emptyContext){
     const listArea = el('listArea');
-    if(filtered.length===0){
-      listArea.innerHTML = '<div class="empty-state"><div class="big">No entries found</div><div>'+(q? 'Try a different search term.' : 'Add your first income or expense above.')+'</div></div>';
+    if(entries.length===0){
+      listArea.innerHTML = '<div class="empty-state"><div class="big">Nothing here</div><div>'
+        + (emptyContext ? 'No entries in '+emptyContext+'.' : 'No matching entries.') + '</div></div>';
       return;
     }
 
-    if(currentGroup==='none'){
-      listArea.innerHTML = renderEntries(filtered);
-      return;
-    }
-
-    const groups = {};
-    filtered.forEach(e=>{
+    // group by calendar day
+    const groups = {}; // key: yyyy-mm-dd -> {dateObj, income:[], expense:[]}
+    entries.forEach(e=>{
       const d = new Date(e.date);
-      const key = groupKey(d, currentGroup);
-      if(!groups[key]) groups[key]=[];
-      groups[key].push(e);
+      const key = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+      if(!groups[key]) groups[key] = { dateObj:d, income:[], expense:[] };
+      groups[key][e.type==='expense'?'expense':'income'].push(e);
     });
 
+    const orderedKeys = Object.keys(groups).sort((a,b)=> groups[b].dateObj - groups[a].dateObj);
+
     let html = '';
-    Object.keys(groups).forEach(key=>{
-      const items = groups[key];
-      const groupTotal = items.reduce((s,e)=> s + (e.type==='income'?1:-1)*(parseFloat(e.amount)||0), 0);
-      html += `<div class="group">
-        <div class="group-title"><span>${key}</span><span>${groupTotal>=0?'+':'-'}₹${Math.abs(groupTotal).toFixed(2)}</span></div>
-        ${renderEntries(items)}
-      </div>`;
+    orderedKeys.forEach(key=>{
+      const g = groups[key];
+      html += '<div class="day-group">'
+        + '<div class="day-label">'+dayLabelFor(g.dateObj)+'</div>'
+        + '<div class="day-split">'
+        +   '<div class="col col-income"><div class="subcol-label si">Income</div>'+renderColEntries(g.income,'income')+'</div>'
+        +   '<div class="col col-expense"><div class="subcol-label se">Expense</div>'+renderColEntries(g.expense,'expense')+'</div>'
+        + '</div></div>';
     });
     listArea.innerHTML = html;
   }
 
-  function renderEntries(items){
+  function renderColEntries(items, type){
+    if(items.length===0) return '<div class="col-empty">—</div>';
+    const sign = type==='income' ? '+' : '-';
     return items.map(e=>{
-      const d = new Date(e.date);
-      const dateStr = d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
-      const timeStr = d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-      const sign = e.type==='income' ? '+' : '-';
-      const amt = parseFloat(e.amount)||0;
-      return `<div class="entry">
-        <div class="date">${dateStr}<br>${timeStr}</div>
-        <div>
-          <div class="desc">${escapeHtml(e.description)}</div>
-          ${e.notes ? `<div class="notes">${escapeHtml(e.notes)}</div>` : ''}
-        </div>
-        <div class="amt ${e.type}">${sign}₹${amt.toFixed(2)}</div>
-      </div>`;
+      const amt = Number(e.amount)||0;
+      return '<div class="row-entry">'
+        + '<div><div class="desc">'+escapeHtml(e.description)+'</div>'
+        + (e.notes ? '<div class="notes">'+escapeHtml(e.notes)+'</div>' : '')
+        + '</div>'
+        + '<div class="amt '+type+'">'+sign+formatMoney(amt).replace('₹','₹')+'</div>'
+        + '</div>';
     }).join('');
   }
 
@@ -636,8 +649,13 @@
     return div.innerHTML;
   }
 
-  // --- Init ---
-  if(checkSetup()) loadEntries();
+  function init(){
+    if(!checkSetup()) return;
+    updateMonthLabel();
+    loadMonth();
+    loadSummary();
+  }
+  init();
 })();
 </script>
 </body>
